@@ -87,7 +87,7 @@
             <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="/profile" class="d-block">{{ Auth::user()->name }}</a>
+            <a href="stud/logout" class="d-block">Logout</a>
         </div>
         </div>
 
@@ -140,13 +140,31 @@
                 </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" data-toggle="collapse" href="#departmentsDropdown" aria-expanded="false">
-                        <i class="fas fa-building"></i>
-                        Departments
-                        <i class="fas fa-chevron-down"></i>
+                    <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Course Materials
+                        <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
-                    <div class="collapse" id="departmentsDropdown">
-                        <ul class="ml-3 nav flex-column">
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                        <a href="/course" class="nav-link">
+                            {{-- <i class="far fa-circle nav-icon"></i> --}}
+                            <p>Available Course Materials</p>
+                        </a>
+                        </li>
+                    </ul>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#departmentsDropdown" aria-expanded="false">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                            Departments
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    {{-- <div class="collapse" id="departmentsDropdown"> --}}
+                        <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a class="nav-link" href="/department">All Departments</a>
                             </li>
@@ -154,7 +172,7 @@
                                 <a class="nav-link" href="/department/create">Add Department</a>
                             </li>
                         </ul>
-                    </div>
+                    {{-- </div> --}}
                 </li>
 
             <li class="nav-item">

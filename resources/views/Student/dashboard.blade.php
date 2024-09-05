@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{config('app.name', 'Laravel') }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,9 +12,11 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body class="hold-transition sidebar-mini">
+    @php
+        use Illuminate\Support\Facades\Auth;
+    @endphp
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -55,6 +57,7 @@
         </div>
       </li>
 
+
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -70,6 +73,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
+  <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('stdashboard') }}" class="brand-link">
@@ -82,7 +86,7 @@
         <!-- Sidebar user (optional) -->
         <div class="pb-3 mt-3 mb-3 user-panel d-flex">
         <div class="image">
-            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            {{-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
         </div>
         <div class="info">
             <a href="stud/logout" class="d-block">Logout</a>
@@ -124,7 +128,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                    <a href="/course" class="nav-link">
+                    <a href="/stud/course" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Available Courses</p>
                     </a>
@@ -136,48 +140,40 @@
                     </a>
                     </li> --}}
                 </ul>
-            </li>
-
-            <li class="nav-item">
-                <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-                    <i class="nav-icon fas fa-file"></i>
-                    <p>Course Materials
-                    <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                    <a href="/stud/coursematerial" class="nav-link">
-                        {{-- <i class="far fa-circle nav-icon"></i> --}}
-                        <p>Available Course Materials</p>
-                    </a>
-                    </li>
-                </ul>
                 </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-building"></i>
-                    <p>
-                        Departments
+                <li class="nav-item">
+                    <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Course Materials
                         <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" href="/department">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>All Departments</p>
-                            </a>
+                        <a href="/stud/coursematerial" class="nav-link">
+                            {{-- <i class="far fa-circle nav-icon"></i> --}}
+                            <p>Available Course Materials</p>
+                        </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/department/create">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Department</p>
-                            </a>
-                        </li>
-                </ul>
-            </li>
+                    </ul>
+                    </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#departmentsDropdown" aria-expanded="false">
+                        <i class="fas fa-building"></i>
+                        Departments
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="departmentsDropdown">
+                        <ul class="ml-3 nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/department">All Departments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/department/create">Add Department</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> --}}
 
             {{-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -188,7 +184,7 @@
             </a>
             </li> --}}
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
@@ -240,7 +236,7 @@
                     </a>
                 </li>
             </ul>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
@@ -269,9 +265,9 @@
                 </a>
                 </li>
             </ul>
-            </li>
+            </li> --}}
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
             <a href="../calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
@@ -280,6 +276,35 @@
                 </p>
             </a>
             </li> --}}
+            {{-- <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                Mailbox
+                <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="../mailbox/mailbox.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="../mailbox/compose.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Compose</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="../mailbox/read-mail.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Read</p>
+                </a>
+                </li>
+            </ul>
+            </li> --}}
         </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -287,108 +312,43 @@
     <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    <div class="container-fluid">
+      <div class="container-fluid">
         <div class="mb-2 row">
-        <div class="col-sm-6">
-            <h1>Lecturers</h1>
-        </div>
-        <div class="col-sm-6">
+          <div class="col-sm-6">
+            <h1>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} {{ Auth::user()->othernames }}</h1>
+          </div>
+          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Students</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"> {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} {{ Auth::user()->othernames }}</li>
             </ol>
+          </div>
         </div>
-        </div>
-    </div><!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
-    <section class="content">
-    <div class="container-fluid">
-        <!-- /.row -->
-        <div class="row">
-        <div class="col-12">
-            <div class="card">
-            <div class="card-header">
-
-                <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
-
-                    <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="p-0 card-body table-responsive">
-                <table class="table table-hover text-nowrap">
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Department Name</th>
-                    <th>Program Name</th>
-                    {{-- <th>Course</th> --}}
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($students as $student)
-                    <tr>
-                    <td>{{ $student->name }}</td>
-                    <td>{{ $student->department->name }}</td> <!-- Displaying the lecturer department name -->
-                    <td>{{ $student->program->name }}</td> <!-- Displaying the lecturer program name -->
-                    {{-- <td>
-                        @foreach ($student->courses as $course)
-                            {{ $course->name }}
-                        @endforeach
-                    </td> <!-- Displaying the lecturer course name --> --}}
-
-                    <td><a href="{{ route('student.edit', $student->id) }}" class='btn btn-primary'>Edit</a></95td>
-                        <td>
-                            <form action="{{ route('student.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this student?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        </div>
-        <!-- /.row -->
-
-    </div><!-- /.container-fluid -->
-    </section>
+    @yield('content')
     <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-    <b>Version</b> 3.2.0
+      <b>Version</b> 3.2.0
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-</footer>
+    <strong>Copyright &copy; 2014-2021 <a href="www.linkedin.com/in/nathanieloforitwumasi">NOCT</a>.</strong> All rights reserved.
+  </footer>
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -396,9 +356,59 @@
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+$(function () {
+  $.validator.setDefaults({
+    submitHandler: function () {
+      alert( "Form successful submitted!" );
+    }
+  });
+  $('#quickForm').validate({
+    rules: {
+      email: {
+        required: true,
+        email: true,
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+      terms: {
+        required: true
+      },
+    },
+    messages: {
+      email: {
+        required: "Please enter a email address",
+        email: "Please enter a valid email address"
+      },
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      terms: "Please accept our terms"
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
 </body>
 </html>
